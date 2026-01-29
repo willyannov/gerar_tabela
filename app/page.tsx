@@ -89,14 +89,15 @@ export default function Home() {
     const linhasTabela = dados.map(dado => {
       const tipos_negrito = ['Demanda', 'Fase de Planejamento', 'Fase de Execução', 'Fase de Entrega']
       const tipo = dado.solicitacao.split(':')[0]
-      const negrito = tipos_negrito.includes(tipo) ? ' class="negrito"' : ''
+      const isBold = tipos_negrito.includes(tipo)
+      const fontWeight = isBold ? 'font-weight: bold;' : ''
 
-      return `            <tr${negrito}>
-                <td><a href="https://redmine.deltapoint.com.br/issues/${dado.numero}">#${dado.numero}</a></td>
-                <td>${dado.solicitacao}</td>
-                <td>${dado.data_abertura}</td>
-                <td>${dado.data_encerramento}</td>
-                <td>${dado.tecnico}</td>
+      return `            <tr>
+                <td style="border: 1px solid black; padding: 8px; text-align: center; font-family: Arial; font-size: 10pt; ${fontWeight}"><a href="https://redmine.deltapoint.com.br/issues/${dado.numero}" style="color: #0563C1; text-decoration: underline; font-family: Arial; font-size: 10pt;">#${dado.numero}</a></td>
+                <td style="border: 1px solid black; padding: 8px; text-align: left; font-family: Arial; font-size: 10pt; ${fontWeight}">${dado.solicitacao}</td>
+                <td style="border: 1px solid black; padding: 8px; text-align: center; font-family: Arial; font-size: 10pt; ${fontWeight}">${dado.data_abertura}</td>
+                <td style="border: 1px solid black; padding: 8px; text-align: center; font-family: Arial; font-size: 10pt; ${fontWeight}">${dado.data_encerramento}</td>
+                <td style="border: 1px solid black; padding: 8px; text-align: left; font-family: Arial; font-size: 10pt; ${fontWeight}">${dado.tecnico}</td>
             </tr>`
     }).join('\n')
 
@@ -199,11 +200,11 @@ export default function Home() {
     <table id="tabela">
         <thead>
             <tr>
-                <th>Nº</th>
-                <th>Solicitação</th>
-                <th>Data<br>Abertura</th>
-                <th>Data<br>Encerramento</th>
-                <th>Técnico</th>
+                <th style="border: 1px solid black; padding: 8px; text-align: center; background-color: #D9D9D9; font-family: Arial; font-size: 10pt; font-weight: bold;">Nº</th>
+                <th style="border: 1px solid black; padding: 8px; text-align: center; background-color: #D9D9D9; font-family: Arial; font-size: 10pt; font-weight: bold;">Solicitação</th>
+                <th style="border: 1px solid black; padding: 8px; text-align: center; background-color: #D9D9D9; font-family: Arial; font-size: 10pt; font-weight: bold;">Data<br>Abertura</th>
+                <th style="border: 1px solid black; padding: 8px; text-align: center; background-color: #D9D9D9; font-family: Arial; font-size: 10pt; font-weight: bold;">Data<br>Encerramento</th>
+                <th style="border: 1px solid black; padding: 8px; text-align: center; background-color: #D9D9D9; font-family: Arial; font-size: 10pt; font-weight: bold;">Técnico</th>
             </tr>
         </thead>
         <tbody id="tbody">

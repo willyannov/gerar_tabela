@@ -1,0 +1,52 @@
+
+
+Demanda #45983: Abertura de Sprint	Finalizado	Sabrina Fernandes Carvalho	02/01/2026	07/01/2026
+Demanda #45984: Execução dos testes não funcionais - janeiro	Finalizado	Sabrina Fernandes Carvalho	08/01/2026	22/01/2026
+Fase de Planejamento #45985: Plano de testes não funcionais - janeiro	Concluída	Sabrina Fernandes Carvalho	07/01/2026	08/01/2026	
+Fase de Execução #45986: Execução de testes não funcionais - janeiro	Concluída	Sabrina Fernandes Carvalho	08/01/2026	22/01/2026	
+Card #45987: [Cadastro] HU_047.1 Relacionamento entre Origens e Agências Intermediadoras AGÊNCIAS	Concluída	Sabrina Fernandes Carvalho	08/01/2026	09/01/2026
+Card #45988: [Cadastro] HU_048.1 Relacionamento entre Origens e Agências Intermediadoras ORIGENS	Concluída	Sabrina Fernandes Carvalho	09/01/2026	12/01/2026
+Card #45989: [Cadastro] HU_068 Serviços Compartilhados (Origem Isenta Solicitante)	Concluída	Sabrina Fernandes Carvalho	12/01/2026	13/01/2026
+Card #45990: [Cadastro] HU_069 Serviços Compartilhados (Origem Isenta_solicitada)	Concluída	Karina Verissimo	13/01/2026	14/01/2026
+Card #45991: [Cadastro] HU_071 Solicitação de Cadastro de Órgãos com Serv. Compartilhados Pagantes Passo 1	Concluída	Sabrina Fernandes Carvalho	14/01/2026	15/01/2026
+Card #45992: [Cadastro] HU_072 Solicitação de Cadastro de Órgãos com Serv. Compartilhados Pagantes Passo 2 (Representante Legal-Procurador e Usuários)	Concluída	Karina Verissimo	15/01/2026	16/01/2026
+Card #45993: [Cadastro] HU_073 Solicitação de Cadastro de Órgãos com Serv. Compartilhados Pagantes Passo 3 (Revisão e Assinaturas)	Concluída	Karina Verissimo	16/01/2026	19/01/2026
+Card #45994: [Cadastro] HU_074 Serviços Compartilhados (Órgãos Pagante Solicitante)	Concluída	Sabrina Fernandes Carvalho	19/01/2026	20/01/2026
+Card #45995: [Cadastro] HU_075 Serviços Compartilhados (Origem Pagante_solicitada)	Concluída	Karina Verissimo	20/01/2026	21/01/2026
+Card #45996: [Recepção] HU_076 Gerenciamento do Sistema Cadastro de Tipos Atos	Concluída	Sabrina Fernandes Carvalho	21/01/2026	22/01/2026
+Card #46149: [Cadastro] HU_065.1 Definição Fluxo de Acesso Novos Usuários	Concluída	Karina Verissimo	13/01/2026	14/01/2026
+Fase de Entrega #45997: Entrega do relatório técnico da execução dos casos de teste não funcionais - janeiro	Nova	Sabrina Fernandes Carvalho	08/01/2026	30/01/2026	
+Demanda #45998: Modelagem teste funcionais - janeiro	Em execução	Sabrina Fernandes Carvalho	08/01/2026	30/01/2026
+Card #45999: [Cadastro] HU_047.1 Relacionamento entre Origens e Agências Intermediadoras AGÊNCIAS	Concluída	Sabrina Fernandes Carvalho	08/01/2026	09/01/2026
+Card #46000: [Cadastro] HU_048.1 Relacionamento entre Origens e Agências Intermediadoras ORIGENS	Concluída	Sabrina Fernandes Carvalho	09/01/2026	12/01/2026
+Card #46001: [Cadastro] HU_068 Serviços Compartilhados (Origem Isenta Solicitante)	Concluída	Sabrina Fernandes Carvalho	12/01/2026	13/01/2026
+Card #46002: [Cadastro] HU_069 Serviços Compartilhados (Origem Isenta_solicitada)	Concluída	Karina Verissimo	13/01/2026	14/01/2026
+Card #46003: [Cadastro] HU_071 Solicitação de Cadastro de Órgãos com Serv. Compartilhados Pagantes Passo 1	Concluída	Sabrina Fernandes Carvalho	14/01/2026	15/01/2026
+Card #46004: [Cadastro] HU_072 Solicitação de Cadastro de Órgãos com Serv. Compartilhados Pagantes Passo 2 (Representante Legal-Procurador e Usuários)	Concluída	Sabrina Fernandes Carvalho	15/01/2026	16/01/2026
+Card #46005: [Cadastro] HU_073 Solicitação de Cadastro de Órgãos com Serv. Compartilhados Pagantes Passo 3 (Revisão e Assinaturas)	Concluída	Karina Verissimo	16/01/2026	19/01/2026
+Card #46006: [Cadastro] HU_074 Serviços Compartilhados (Órgãos Pagante Solicitante)	Concluída	Sabrina Fernandes Carvalho	19/01/2026	20/01/2026
+Card #46007: [Cadastro] HU_075 Serviços Compartilhados (Origem Pagante_solicitada)	Concluída	Sabrina Fernandes Carvalho	20/01/2026	21/01/2026
+Card #46008: [Recepção] HU_076 Gerenciamento do Sistema Cadastro de Tipos Atos	Concluída	Karina Verissimo	21/01/2026	22/01/2026
+Card #46150: [Cadastro] HU_065.1 Definição Fluxo de Acesso Novos Usuários	Concluída	Karina Verissimo	13/01/2026	14/01/2026
+Demanda #46009: Execução dos casos de teste funcionais - dezembro	Em execução	Sabrina Fernandes Carvalho	19/01/2026	30/01/2026
+Fase de Planejamento #46010: Analise e planejamento	Em execução		29/01/2026	30/01/2026	
+Fase de Execução #46011: Execução teste	Nova	Sabrina Fernandes Carvalho	29/01/2026	30/01/2026	
+Card #46012: Cadastro HU_001.1- Solicitação de Cadastro de Origem Pagantes Passo 11 - Origem	Concluída	Sabrina Fernandes Carvalho	19/01/2026	20/01/2026
+Card #46013: Cadastro HU_002.1 - Solicitação de Cadastro de Origem Pagantes Passo 2 Representante Legal Procurador e Usuários	Concluída	Karina Verissimo	19/01/2026	20/01/2026
+Card #46014: Cadastro HU_010.1 - Gerenciamento de Cadastro Fluxo de Aprovação de Origem	Concluída	Sabrina Fernandes Carvalho	19/01/2026	20/01/2026
+Card #46015: Cadastro HU_014.2 - Gerenciamento de Cadastro Painel de Atividades	Concluída	Karina Verissimo	21/01/2026	22/01/2026
+Card #46016: Cadastro HU 018.1 - Solicitação de Cadastro de Novos Usuários Origens Pagantes	Concluída	Sabrina Fernandes Carvalho	21/01/2026	22/01/2026
+Card #46017: Cadastro HU_021.1 - Gerenciamento de Cadastro Fluxo Aprovação Devolução Usuários	Concluída	Karina Verissimo	21/01/2026	22/01/2026
+Card #46018: Cadastro HU_041.1 - Solicitação de Cadastro de Origem Pagante Passo 3 Revisão e Assinatura	Concluída	Sabrina Fernandes Carvalho	23/01/2026	26/01/2026
+Card #46019: Cadastro HU_049.1 - Solicitação de Cadastro de Agência Intermediadoras Passo 1 Agência	Concluída	Karina Verissimo	23/01/2026	26/01/2026
+Card #46020: Cadastro HU_050.1 - Solicitação de Cadastro de Agência Intermediadoras Passo 2 Representante Legal Procurador e Usuários	Concluída	Sabrina Fernandes Carvalho	23/01/2026	26/01/2026
+Card #46021: Cadastro HU_051.1 - Solicitação de Cadastro de Agência Intermediadoras Passo 3 Revisão e Assinaturas	Concluída	Karina Verissimo	23/01/2026	26/01/2026
+Card #46022: Cadastro HU_058.1 - Solicitação de Cadastro de Comissão Pró-Fundação Passo 3	Em execução	Sabrina Fernandes Carvalho	27/01/2026	28/01/2026
+Card #46023: Cadastro HU_061 - Gerenciamento de Cadastro Visão Interna Fila Comissão Pró	Em execução	Karina Verissimo	27/01/2026	28/01/2026
+Card #46024: Cadastro HU_062 - Gerenciamento de Cadastro Fluxo Aprovação-Devolução Comissão Pró-Fundação	Em execução	Sabrina Fernandes Carvalho	27/01/2026	28/01/2026
+Card #46025: Cadastro HU_070 - Cadastro de Origens Inadimplentes Blacklist	Em execução	Karina Verissimo	27/01/2026	28/01/2026
+Fase de Entrega #46026: Entrega do relatório técnico	Nova	Sabrina Fernandes Carvalho	28/01/2026	30/01/2026	
+Demanda #46122: Apoio à fiscalização de métricas realizadas pela Deltapoint	Em execução	Anna Karolina Alves Barreto	12/01/2026	31/01/2026
+Métricas #46198: Métricas – Contagem estimada da Sprint de Janeiro/2026	Executada	Anna Karolina Alves Barreto	12/01/2026	14/01/2026	
+Métricas #46199: Métricas – Contagem estimada da Sprint de Abril/2025	Nova	Anna Karolina Alves Barreto	13/01/2026	31/01/2026	
+Fase de Entrega #46219: Teste de sustentação	Concluída	Sabrina Fernandes Carvalho	14/01/2026	20/01/2026	

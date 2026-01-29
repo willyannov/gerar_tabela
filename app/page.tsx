@@ -1,0 +1,350 @@
+'use client'
+
+import { useState } from 'react'
+import styles from './page.module.css'
+
+interface Registro {
+  numero: string
+  solicitacao: string
+  data_abertura: string
+  data_encerramento: string
+  tecnico: string
+}
+
+export default function Home() {
+  const [inputText, setInputText] = useState('')
+  const [registros, setRegistros] = useState<Registro[]>([])
+  const [tipoEntrada, setTipoEntrada] = useState<'texto' | 'html'>('texto')
+
+  const processarDados = () => {
+    if (tipoEntrada === 'html') {
+      processarHTML()
+    } else {
+      processarTexto()
+    }
+  }
+
+  const processarTexto = () => {
+    const linhas = inputText.split('\n')
+    const dadosProcessados: Registro[] = []
+
+    for (const linha of linhas) {
+      const linhaLimpa = linha.trim()
+      if (!linhaLimpa) continue
+
+      const parts = linhaLimpa.split('\t')
+
+      if (parts.length >= 5 && parts[0].includes('#')) {
+        const match = parts[0].match(/(.+?)\s+#(\d+):\s+(.+)/)
+        if (match) {
+          const tipo = match[1].trim()
+          const numero = match[2]
+          const descricao = match[3].trim()
+          const responsavel = parts[2]?.trim() || ''
+          const data_inicio = parts[3]?.trim() || ''
+          const data_fim = parts[4]?.trim() || ''
+
+          dadosProcessados.push({
+            numero,
+            solicitacao: `${tipo}: ${descricao}`,
+            data_abertura: data_inicio,
+            data_encerramento: data_fim,
+            tecnico: responsavel
+          })
+        }
+      }
+    }
+
+    setRegistros(dadosProcessados)
+    abrirTabelaNovaAba(dadosProcessados)
+  }
+
+  const processarHTML = () => {
+    const parser = new DOMParser()
+    const doc = parser.parseFromString(inputText, 'text/html')
+    const dadosProcessados: Registro[] = []
+
+    // Buscar apenas dentro do elemento com id="issue_tree"
+    const issueTree = doc.getElementById('issue_tree')
+    if (!issueTree) {
+      alert('Não foi encontrado o elemento com id="issue_tree". Certifique-se de colar o HTML completo da página do Redmine.')
+      return
+    }
+
+    // Buscar todas as linhas da tabela dentro do issue_tree
+    const rows = issueTree.querySelectorAll('tr.issue, tr[class*="issue"]')
+    
+    rows.forEach(row => {
+      try {
+        // Extrair número da issue
+        const linkElement = row.querySelector('td.subject a, td[class*="subject"] a')
+        if (!linkElement) return
+
+        const href = linkElement.getAttribute('href')
+        const numeroMatch = href?.match(/\/issues\/(\d+)/)
+        if (!numeroMatch) return
+        const numero = numeroMatch[1]
+
+        // Extrair tipo e descrição
+        const linkText = linkElement.textContent?.trim() || ''
+        const tipoMatch = linkText.match(/(.+?)\s+#\d+/)
+        const tipo = tipoMatch ? tipoMatch[1] : ''
+
+        const subjectTd = row.querySelector('td.subject, td[class*="subject"]')
+        const fullText = subjectTd?.textContent?.trim() || ''
+        const descricaoMatch = fullText.match(/:\s*(.+)/)
+        const descricao = descricaoMatch ? descricaoMatch[1].trim() : ''
+
+        // Extrair datas
+        const dataInicio = row.querySelector('td.start_date, td[class*="start_date"]')?.textContent?.trim() || ''
+        const dataFim = row.querySelector('td.due_date, td[class*="due_date"]')?.textContent?.trim() || ''
+
+        // Extrair técnico
+        const tecnico = row.querySelector('td.assigned_to, td[class*="assigned_to"]')?.textContent?.trim() || ''
+
+        if (numero && tipo && descricao) {
+          dadosProcessados.push({
+            numero,
+            solicitacao: `${tipo}: ${descricao}`,
+            data_abertura: dataInicio,
+            data_encerramento: dataFim,
+            tecnico
+          })
+        }
+      } catch (error) {
+        console.error('Erro ao processar linha:', error)
+      }
+    })
+
+    if (dadosProcessados.length === 0) {
+      alert('Nenhum registro foi processado. Verifique se o HTML contém a estrutura esperada do Redmine.')
+      return
+    }
+
+    setRegistros(dadosProcessados)
+    abrirTabelaNovaAba(dadosProcessados)
+  }
+
+  const abrirTabelaNovaAba = (dados: Registro[]) => {
+    const linhasTabela = dados.map(dado => {
+      const tipos_negrito = ['Demanda', 'Fase de Planejamento', 'Fase de Execução', 'Fase de Entrega']
+      const tipo = dado.solicitacao.split(':')[0]
+      const negrito = tipos_negrito.includes(tipo) ? ' class="negrito"' : ''
+
+      return `            <tr${negrito}>
+                <td><a href="https://redmine.deltapoint.com.br/issues/${dado.numero}">#${dado.numero}</a></td>
+                <td>${dado.solicitacao}</td>
+                <td>${dado.data_abertura}</td>
+                <td>${dado.data_encerramento}</td>
+                <td>${dado.tecnico}</td>
+            </tr>`
+    }).join('\n')
+
+    const html = `<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Tabela de Demandas - Janeiro 2026</title>
+    <style>
+        body {
+            font-family: 'Calibri', Arial, sans-serif;
+            padding: 20px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #D9D9D9;
+            font-weight: bold;
+            text-align: center;
+        }
+        td:nth-child(1) {
+            text-align: center;
+        }
+        td:nth-child(3), td:nth-child(4) {
+            text-align: center;
+        }
+        a {
+            color: #0563C1;
+            text-decoration: underline;
+        }
+        .info {
+            background-color: #FFF3CD;
+            border: 1px solid #FFC107;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .negrito {
+            font-weight: bold;
+        }
+        .button-container {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: #5a5a5a;
+            color: white;
+        }
+        .btn:hover {
+            background: #404040;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        .feedback {
+            display: none;
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+            padding: 8px 16px;
+            border-radius: 5px;
+        }
+        .feedback.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="info">
+        <strong>Instruções:</strong> Clique no botão abaixo para copiar os registros e cole no Word.<br>
+        <strong>Total de registros:</strong> ${dados.length} linhas de dados
+    </div>
+
+    <div class="button-container">
+        <button class="btn" onclick="copiarApenasRegistros()">📋 Copiar Registros</button>
+        <div id="feedback" class="feedback">✅ Copiado com sucesso!</div>
+    </div>
+    
+    <table id="tabela">
+        <thead>
+            <tr>
+                <th>Nº</th>
+                <th>Solicitação</th>
+                <th>Data<br>Abertura</th>
+                <th>Data<br>Encerramento</th>
+                <th>Técnico</th>
+            </tr>
+        </thead>
+        <tbody id="tbody">
+${linhasTabela}
+        </tbody>
+    </table>
+
+    <script>
+        function showFeedback() {
+            const feedback = document.getElementById('feedback');
+            feedback.classList.add('show');
+            setTimeout(() => feedback.classList.remove('show'), 2000);
+        }
+
+        function copiarApenasRegistros() {
+            const tbody = document.getElementById('tbody');
+            const range = document.createRange();
+            range.selectNode(tbody);
+            window.getSelection().removeAllRanges();
+            window.getSelection().addRange(range);
+            document.execCommand('copy');
+            window.getSelection().removeAllRanges();
+            showFeedback();
+        }
+    </script>
+</body>
+</html>`
+
+    // Abrir HTML em nova aba
+    const blob = new Blob([html], { type: 'text/html' })
+    const url = URL.createObjectURL(blob)
+    window.open(url, '_blank')
+    
+    // Limpar URL após abrir
+    setTimeout(() => URL.revokeObjectURL(url), 100)
+  }
+
+  const limpar = () => {
+    setInputText('')
+    setRegistros([])
+  }
+
+  return (
+    <div className={styles.container}>
+      <div className={styles.card}>
+        <h1 className={styles.title}>📊 Gerador de Tabela de Demandas</h1>
+        <p className={styles.subtitle}>Cole os dados exportados do Redmine</p>
+
+        <div className={styles.radioGroup}>
+          <label className={styles.radioLabel}>
+            <input
+              type="radio"
+              name="tipoEntrada"
+              value="texto"
+              checked={tipoEntrada === 'texto'}
+              onChange={() => setTipoEntrada('texto')}
+            />
+            📝 Texto com Tabs
+          </label>
+          <label className={styles.radioLabel}>
+            <input
+              type="radio"
+              name="tipoEntrada"
+              value="html"
+              checked={tipoEntrada === 'html'}
+              onChange={() => setTipoEntrada('html')}
+            />
+            🌐 HTML da Página
+          </label>
+        </div>
+
+        <textarea
+          className={styles.textarea}
+          placeholder={
+            tipoEntrada === 'texto'
+              ? "Cole aqui os dados do Redmine (formato texto com tabs)...\n\nExemplo:\nDemanda #45983: Abertura de Sprint    Finalizado    Sabrina Fernandes    02/01/2026    07/01/2026"
+              : "Cole aqui o HTML completo da página do Redmine...\n\nDica: Pressione Ctrl+U no navegador para ver o código-fonte da página e copie a tabela."
+          }
+          value={inputText}
+          onChange={(e) => setInputText(e.target.value)}
+          rows={10}
+        />
+
+        <div className={styles.buttonGroup}>
+          <button 
+            className={styles.buttonPrimary} 
+            onClick={processarDados}
+            disabled={!inputText.trim()}
+          >
+            🔄 Processar Dados
+          </button>
+          <button 
+            className={styles.buttonSecondary} 
+            onClick={limpar}
+          >
+            🗑️ Limpar
+          </button>
+        </div>
+
+        {registros.length > 0 && (
+          <div className={styles.resultInfo}>
+            ✅ <strong>{registros.length}</strong> registros processados! Uma nova aba foi aberta com a tabela.
+            <br />
+            <small>Se não abriu, verifique se o bloqueador de pop-ups está ativado.</small>
+          </div>
+        )}
+      </div>
+    </div>
+  )
+}

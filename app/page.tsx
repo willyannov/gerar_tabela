@@ -14,49 +14,9 @@ interface Registro {
 export default function Home() {
   const [inputText, setInputText] = useState('')
   const [registros, setRegistros] = useState<Registro[]>([])
-  const [tipoEntrada, setTipoEntrada] = useState<'texto' | 'html'>('texto')
 
   const processarDados = () => {
-    if (tipoEntrada === 'html') {
-      processarHTML()
-    } else {
-      processarTexto()
-    }
-  }
-
-  const processarTexto = () => {
-    const linhas = inputText.split('\n')
-    const dadosProcessados: Registro[] = []
-
-    for (const linha of linhas) {
-      const linhaLimpa = linha.trim()
-      if (!linhaLimpa) continue
-
-      const parts = linhaLimpa.split('\t')
-
-      if (parts.length >= 5 && parts[0].includes('#')) {
-        const match = parts[0].match(/(.+?)\s+#(\d+):\s+(.+)/)
-        if (match) {
-          const tipo = match[1].trim()
-          const numero = match[2]
-          const descricao = match[3].trim()
-          const responsavel = parts[2]?.trim() || ''
-          const data_inicio = parts[3]?.trim() || ''
-          const data_fim = parts[4]?.trim() || ''
-
-          dadosProcessados.push({
-            numero,
-            solicitacao: `${tipo}: ${descricao}`,
-            data_abertura: data_inicio,
-            data_encerramento: data_fim,
-            tecnico: responsavel
-          })
-        }
-      }
-    }
-
-    setRegistros(dadosProcessados)
-    abrirTabelaNovaAba(dadosProcessados)
+    processarHTML()
   }
 
   const processarHTML = () => {
@@ -284,38 +244,11 @@ ${linhasTabela}
     <div className={styles.container}>
       <div className={styles.card}>
         <h1 className={styles.title}>📊 Gerador de Tabela de Demandas</h1>
-        <p className={styles.subtitle}>Cole os dados exportados do Redmine</p>
-
-        <div className={styles.radioGroup}>
-          <label className={styles.radioLabel}>
-            <input
-              type="radio"
-              name="tipoEntrada"
-              value="texto"
-              checked={tipoEntrada === 'texto'}
-              onChange={() => setTipoEntrada('texto')}
-            />
-            📝 Texto com Tabs
-          </label>
-          <label className={styles.radioLabel}>
-            <input
-              type="radio"
-              name="tipoEntrada"
-              value="html"
-              checked={tipoEntrada === 'html'}
-              onChange={() => setTipoEntrada('html')}
-            />
-            🌐 HTML da Página
-          </label>
-        </div>
+        <p className={styles.subtitle}>Cole o HTML completo da página do Redmine</p>
 
         <textarea
           className={styles.textarea}
-          placeholder={
-            tipoEntrada === 'texto'
-              ? "Cole aqui os dados do Redmine (formato texto com tabs)...\n\nExemplo:\nDemanda #45983: Abertura de Sprint    Finalizado    Sabrina Fernandes    02/01/2026    07/01/2026"
-              : "Cole aqui o HTML completo da página do Redmine...\n\nDica: Pressione Ctrl+U no navegador para ver o código-fonte da página e copie a tabela."
-          }
+          placeholder="Cole aqui o HTML completo da página do Redmine...&#10;&#10;Dica: Pressione Ctrl+U no navegador para ver o código-fonte da página e copie tudo."
           value={inputText}
           onChange={(e) => setInputText(e.target.value)}
           rows={10}

@@ -40,10 +40,9 @@ __pycache__/
 *$py.class
 .venv/
 venv/
+*.py
 
-
+# Arquivos de teste e desenvolvimento
 DEPLOY.md
-tabela_janeiro_2026.html
-texto.txt
-testar_textoteste.py
-tabela_html.html
+*.html
+*.txt

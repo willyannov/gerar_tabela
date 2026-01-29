@@ -107,17 +107,21 @@ export default function Home() {
     <title>Tabela de Demandas - Janeiro 2026</title>
     <style>
         body {
-            font-family: 'Calibri', Arial, sans-serif;
+            font-family: Arial, sans-serif;
             padding: 20px;
         }
         table {
             border-collapse: collapse;
             width: 100%;
+            font-family: Arial, sans-serif;
+            font-size: 10pt;
         }
         th, td {
             border: 1px solid black;
             padding: 8px;
             text-align: left;
+            font-family: Arial, sans-serif;
+            font-size: 10pt;
         }
         th {
             background-color: #D9D9D9;
@@ -133,6 +137,8 @@ export default function Home() {
         a {
             color: #0563C1;
             text-decoration: underline;
+            font-family: Arial, sans-serif;
+            font-size: 10pt;
         }
         .info {
             background-color: #FFF3CD;

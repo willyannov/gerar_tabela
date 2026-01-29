@@ -87,7 +87,7 @@ export default function Home() {
 
   const abrirTabelaNovaAba = (dados: Registro[]) => {
     const linhasTabela = dados.map(dado => {
-      const tipos_negrito = ['Demanda', 'Fase de Planejamento', 'Fase de Execução', 'Fase de Entrega']
+      const tipos_negrito = ['Demanda', 'Fase de Planejamento', 'Fase de Execução', 'Fase de Entrega', 'Fase de Modelagem']
       const tipo = dado.solicitacao.split(':')[0]
       const isBold = tipos_negrito.includes(tipo)
       const fontWeight = isBold ? 'font-weight: bold;' : ''

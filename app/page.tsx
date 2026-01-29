@@ -243,7 +243,7 @@ ${linhasTabela}
   return (
     <div className={styles.container}>
       <div className={styles.card}>
-        <h1 className={styles.title}>📊 Gerador de Tabela de Demandas</h1>
+        <h1 className={styles.title}>📊 Gerar Tabela</h1>
         <p className={styles.subtitle}>Cole o HTML completo da página do Redmine</p>
 
         <textarea

@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Gerador de Tabela de Demandas',
-  description: 'Converte dados de demandas do Redmine em tabelas HTML formatadas',
+  title: 'Gerar Tabela',
+  description: '',
 }
 
 export default function RootLayout({
